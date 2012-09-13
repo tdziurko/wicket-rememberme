@@ -1,6 +1,7 @@
 package pl.tomaszdziurko.wicket.view;
 
 import org.apache.wicket.markup.html.form.Button;
+import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -15,6 +16,7 @@ public class LoginPage extends BasePage {
 
     private String login;
     private String password;
+    private boolean rememberMe;
 
     public LoginPage() {
 
@@ -24,6 +26,7 @@ public class LoginPage extends BasePage {
         loginForm.add(new FeedbackPanel("feedback"));
         loginForm.add(new RequiredTextField<String>("login", new PropertyModel<String>(this, "login")));
         loginForm.add(new PasswordTextField("password", new PropertyModel<String>(this, "password")));
+        loginForm.add(new CheckBox("rememberMe", new PropertyModel<Boolean>(this, "rememberMe")));
 
         Button submit = new Button("submit") {
             @Override

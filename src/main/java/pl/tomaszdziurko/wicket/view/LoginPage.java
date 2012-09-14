@@ -10,9 +10,14 @@ import org.apache.wicket.model.PropertyModel;
 import pl.tomaszdziurko.wicket.UserSession;
 import pl.tomaszdziurko.wicket.WicketApplication;
 import pl.tomaszdziurko.wicket.model.User;
+import pl.tomaszdziurko.wicket.service.CookieService;
 import pl.tomaszdziurko.wicket.service.UserService;
 
 public class LoginPage extends BasePage {
+
+    public static final int REMEMBER_ME_DURATION_IN_DAYS = 30;
+    private static final String REMEMBER_ME_LOGIN_COOKIE = "loginCookie";
+    private static final String REMEMBER_ME_PASSWORD_COOKIE = "passwordCookie";
 
     private String login;
     private String password;
@@ -40,6 +45,13 @@ public class LoginPage extends BasePage {
                 }
                 else {
                     UserSession.get().setUser(user);
+
+                    if(rememberMe) {
+                        CookieService cookieService = WicketApplication.get().getCookieService();
+                        cookieService.saveCookie(getResponse(), REMEMBER_ME_LOGIN_COOKIE, user.getLogin(), REMEMBER_ME_DURATION_IN_DAYS);
+                        cookieService.saveCookie(getResponse(), REMEMBER_ME_PASSWORD_COOKIE, user.getPassword(), REMEMBER_ME_DURATION_IN_DAYS);
+                    }
+
                     setResponsePage(HomePage.class);
                 }
             }

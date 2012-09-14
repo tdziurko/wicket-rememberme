@@ -13,11 +13,11 @@ import pl.tomaszdziurko.wicket.model.User;
 import pl.tomaszdziurko.wicket.service.CookieService;
 import pl.tomaszdziurko.wicket.service.UserService;
 
-public class LoginPage extends BasePage {
+import static pl.tomaszdziurko.wicket.service.SessionProvider.REMEMBER_ME_DURATION_IN_DAYS;
+import static pl.tomaszdziurko.wicket.service.SessionProvider.REMEMBER_ME_LOGIN_COOKIE;
+import static pl.tomaszdziurko.wicket.service.SessionProvider.REMEMBER_ME_PASSWORD_COOKIE;
 
-    public static final int REMEMBER_ME_DURATION_IN_DAYS = 30;
-    private static final String REMEMBER_ME_LOGIN_COOKIE = "loginCookie";
-    private static final String REMEMBER_ME_PASSWORD_COOKIE = "passwordCookie";
+public class LoginPage extends BasePage {
 
     private String login;
     private String password;

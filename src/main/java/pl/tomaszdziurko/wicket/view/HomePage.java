@@ -3,6 +3,7 @@ package pl.tomaszdziurko.wicket.view;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.link.Link;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import pl.tomaszdziurko.wicket.UserSession;
 
@@ -11,6 +12,8 @@ public class HomePage extends BasePage {
 
     public HomePage(final PageParameters parameters) {
         super(parameters);
+
+        add(new FeedbackPanel("feedback"));
 
         Link<Void> logoutLink = new Link<Void>("logout") {
             @Override
